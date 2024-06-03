@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+{% load static %} {% load mathfilters %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
+    <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css" />
+    <title>Pencari Total Kalori Makanan</title>
+    <style>
+        body {
+            background-color: white;
+        }
+
+        .logo {
+            width: 14em;
+            height: 200px;
+        }
+
+        h1 {
+            font-weight: 300;
+        }
+
+        h1 strong {
+            font-weight: 600;
+            color: #30a2ff;
+        }
+
+        .inputstyle {
+            padding: 20px !important;
+        }
+
+        .whoop {
+            background-color: #30a2ff;
+            width: 8em;
+            font-size: 30px !important;
+            color: #ffffff;
+        }
+
+        .caloriescont {
+            background-color: whitesmoke;
+            padding: 30px;
+        }
+
+        .caloriescont ul {
+            padding: 0px;
+        }
+
+        .caloriescont ul li {
+            list-style: none;
+            margin-bottom: 20px;
+            border-bottom: 1px solid black;
+            width: 80%;
+        }
+
+        .caloriescont h3 {
+            color: greenyellow;
+            font-size: 2em;
+            text-transform: capitalize;
+            font-weight: 700;
+        }
+
+        .caloriescont h5 {
+            color: #30a2ff;
+        }
+
+        .servingsize {
+            background-color: #30a2ff;
+            padding: 10px;
+            color: white;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .nav-link :active {
+            color: black;
+
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg shadow-sm fixed-top" style="background-color: #30a2ff;">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav me-auto">
+                    <a class="nav-link active" aria-current="page" href="#home">Count Food Calorie</a>
+                    <a class="nav-link" href="{% url 'food' %}">Food</a>
+                    <a class="nav-link" href="{% url 'index' %}">Record Weight</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <body>
+
+        <body>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 text-center">
+                        <img src="{% static 'images/FOODIE.png' %}" class="img-responsive logo mb-5 mt-5" />
+                        <form method="POST">
+                            {%csrf_token%}
+                            <div class="input-group input-group-lg mb-5">
+                                <input type="text" name="query" class="form-control inputstyle"
+                                    placeholder="carilah total kalori di makananmu..." required>
+                                <button class="btn whoop" type="submit" id="button-addon2">Temukan</button>
+                            </div>
+                        </form>
+                        {% if api %}
+                        {% if api == "oops! There was an error" %}
+                        <div class="alert alert-warning"> Oh no! something went wrong.Please try again in sometime.
+                        </div>
+                        {%else%}
+                        <h1>{{api.0.name | capfirst}} memiliki kalori sebesar <strong> {{api.0.calories}}
+                                Kalori</strong>
+                            {%if api.0.calories > 200%}
+                            <img src="{% static 'images/shocked.png' %}" class="img-responsive" />
+                            {%endif%}
+                        </h1>
+                        {%if api.0.sodium_mg > 1000%}
+                        <div class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+                            <div>
+                                <center class="text-center">This food contains an high amount of sodium. High Sodium
+                                    causes
+                                    Sever dehydration and
+                                    water
+                                    retention.</center>
+                            </div>
+                        </div>
+                        {%endif%}
+                        {%if api.0.sugar_g > 100%}
+                        <div class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+                            <div>
+                                This food contains an high amount of sugar. Sugar causes insulin spikes and is a no.1
+                                cause for
+                                Obesity.
+                            </div>
+                        </div>
+                        {%endif%}
+                    </div>
+                    <div class="row justify-content-center mt-5 mb-5">
+                        <div class="col-md-10 caloriescont shadow rounded">
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <h2 class="mt-3 mb-4">Nilai Gizi </h2><span></span>
+                                    <ul>
+                                        <li class="servingsize">Ukuran Penyajian per 100 Gram <span
+                                                class="float-end"></span>
+                                        </li>
+                                        <li>Karbohidrat: <span class="float-end">{{api.0.carbohydrates_total_g}}</span>
+                                        </li>
+                                        <li>Kolestrol: <span class="float-end">{{api.0.cholesterol_mg}}</span></li>
+                                        <li>Lemak Jenuh: <span class="float-end">{{api.0.fat_saturated_g}}</span></li>
+                                        <li>Lemak Total: <span class="float-end">{{api.0.fat_saturated_g}}</span></li>
+                                        <li>Kandungan Serat: <span class="float-end">{{api.0.fat_total_g}}</span></li>
+                                        <li>Kalium: <span class="float-end">{{api.0.potassium_mg}}</span></li>
+                                        <li>Protein: <span class="float-end">{{api.0.protein_g}}</span></li>
+                                        <li>Sodium:<span class="float-end">{{api.0.sodium_mg}}</span></li>
+                                        <li>Gula: <span class="float-end">{{api.0.sugar_g}}</span></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6 mb-5">
+                                    <h4 class="mt-3 mb-4">Untuk membakar {{api.0.calories}} Kalori Anda harus</h4>
+                                    <div class="d-flex align-items-center mb-5">
+                                        <div class="flex-shrink-0">
+                                            <img src="{% static 'images/running.png' %}" alt="...">
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h5> Jogging </h5>
+                                            <p>Melakukan Jogging selama <strong>
+                                                    {{api.0.calories | div:229 | mul:60 | floatformat:0}}</strong>
+                                                Menit
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center mb-5">
+                                        <div class="flex-shrink-0">
+                                            <img src="{% static 'images/bicycle.png' %}" alt="...">
+                                        </div>
+                                        <div class="flex-grow-1 ms-4">
+                                            <h5> Bersepeda </h5>
+                                            <p>Bersepeda selama <strong>
+                                                    {{api.0.calories | div:221 | mul:60 | floatformat:0}}</strong> Menit
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center mb-5">
+                                        <div class="flex-shrink-0">
+                                            <img src="{% static 'images/weightlifter.png' %}" alt="...">
+                                        </div>
+                                        <div class="flex-grow-1 ms-4">
+                                            <h5>Angkat Beban</h5>
+                                            <p>Melakukan angkat beban selama <strong>
+                                                    {{api.0.calories | div:484|mul:60|floatformat:0}} </strong> Menit
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-shrink-0">
+                                            <img src="{% static 'images/walking.png' %}" alt="...">
+                                        </div>
+                                        <div class="flex-grow-1 ms-1">
+                                            <h5> Jalan Santai </h5>
+                                            <p>Melakukan jalan santai selama <strong>
+                                                    {{api.0.calories | div:294|mul:60|floatformat:0}} </strong> Menit
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <canvas id="myChart" width="400" height="400"></canvas>
+                                </div>
+                                {%endif%}
+                                {%endif%}
+                            </div>
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"
+                                integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg=="
+                                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                            <script>
+                                const ctx = document.getElementById('myChart').getContext('2d');
+                                const myChart = new Chart(ctx, {
+                                    type: 'bar',
+                                    data: {
+                                        labels: ['Karbohidrat', 'Kolestrol', 'Lemak Jenuh', 'Lemak Total', 'Kandungan Serat', 'Kalium', 'Protein', 'Sodium', 'Gula'],
+                                        datasets: [{
+                                            label: 'Nutritional values of {{api.0.name | capfirst}}',
+                                            data: [
+                                                "{{ api.0.carbohydrates_total_g }}", "{{ api.0.cholesterol_mg }}", "{{ api.0.fat_saturated_g }}", "{{api.0.fat_saturated_g }}", "{{api.0.fat_total_g }}", "{{api.0.potassium_mg }}", "{{api.0.protein_g }}", "{{api.0.sodium_mg }}", "{{api.0.sugar_g }}",
+                                            ],
+                                            backgroundColor: [
+                                                'rgba(255, 99, 132, 0.2)',
+                                                'rgba(54, 162, 235, 0.2)',
+                                                'rgba(255, 206, 86, 0.2)',
+                                                'rgba(75, 192, 192, 0.2)',
+                                                'rgba(153, 102, 255, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)'
+                                            ],
+                                            borderColor: [
+                                                'rgba(255, 99, 132, 1)',
+                                                'rgba(54, 162, 235, 1)',
+                                                'rgba(255, 206, 86, 1)',
+                                                'rgba(75, 192, 192, 1)',
+                                                'rgba(153, 102, 255, 1)',
+                                                'rgba(255, 159, 64, 1)'
+                                            ],
+                                            borderWidth: 1
+                                        }]
+                                    },
+                                    options: {
+                                        responsive: true,
+                                        maintainAspectRatio: false,
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true
+                                            }
+                                        }
+                                    }
+                                });
+                            </script>
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"
+                                integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg=="
+                                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                            </script>
+        </body>
+
+</html>

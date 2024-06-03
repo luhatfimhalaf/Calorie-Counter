@@ -1,0 +1,63 @@
+{% extends 'base.html' %} {% block content %}
+
+<body>
+  <h2>Data Berat Badan</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Tanggal</th>
+        <th>Berat</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for berat in berat_list %}
+      <tr>
+        <td>{{ berat.tanggal }}</td>
+        <td>{{ berat.berat }}</td>
+        <td>
+          <a href="{% url 'edit' berat.id %}" class="btn btn-primary btn-sm">Edit</a>
+          <a href="{% url 'hapus' berat.id %}" class="btn btn-danger btn-sm">Hapus</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <a href="{% url 'tambah' %}" class="btn btn-success">Tambah</a>
+  <canvas id="myChart"></canvas>
+
+  <script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var labels = [];
+    var data = [];
+
+    {% for berat in berat_list %}
+    labels.push('{{ berat.tanggal }}');
+    data.push({{ berat.berat }});
+    {% endfor %}
+
+    var chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Berat Badan',
+          data: data,
+          borderColor: 'rgb(75, 192, 192)',
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+</body>
+{% endblock %}

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
+    <title>Daftar Makanan</title>
+    <!-- AOS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <style>
+        .body {
+            min-height: 3000px;
+        }
+
+        .jumbotron {
+            padding-top: 15rem;
+            background-color: #272727;
+        }
+
+        .lead {
+            color: azure;
+        }
+
+        .display-4 {
+            color: azure;
+        }
+
+        #about {
+            background-color: #f3f4f5;
+        }
+
+        #about-1 {
+            background-color: #272727;
+        }
+
+        #projects {
+            background-color: #272727;
+            color: azure;
+        }
+
+        .card {
+            align-items: center;
+        }
+
+        .card-text {
+            text-align: justify;
+            color: #272727;
+        }
+
+        .col-text {
+            color: #f3f4f5;
+        }
+    </style>
+</head>
+
+<body id="home">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg shadow-sm fixed-top" style="background-color: #30a2ff;">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav me-auto">
+                    <a class="nav-link" aria-current="page" href="{% url 'home' %}">Count Food Calorie</a>
+                    <a class="nav-link active" href="#home">Food</a>
+                    <a class="nav-link" href="{% url 'index' %}">Record Weight</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Jumbotron -->
+    <section class="jumbotron text-center">
+        <h1 class="display-4">DAFTAR MAKANAN</h1>
+        <p class="lead ">Kami membaginya menjadi dua kategori</p>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#f3f4f5" fill-opacity="1"
+                d="M0,64L40,64C80,64,160,64,240,106.7C320,149,400,235,480,266.7C560,299,640,277,720,266.7C800,256,880,256,960,250.7C1040,245,1120,235,1200,202.7C1280,171,1360,117,1400,90.7L1440,64L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z">
+            </path>
+        </svg>
+    </section>
+
+    <!-- Jumbotron End -->
+
+    <!-- High Kalori -->
+    <section id="about">
+        <div class="container" data-aos="fade-down" data-aos-offset="250" data-aos-delay="200">
+            <div class="row text-center mb-3">
+                <div class="col">
+                    <h2>Kalori Tinggi</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-4 mb-3">
+                <div class="card" data-aos="flip-left">
+                    <div>
+                        <img src="{% static 'images/Satay.jpg' %}" class="card-img-top" alt="Project1" href="">
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Satay adalah hidangan daging yang terkenal di Asia Tenggara, terutama di
+                            Indonesia, Malaysia, Singapura, dan Thailand. Hidangan ini terdiri dari potongan-potongan
+                            daging yang ditusuk dengan tusuk sate dan dipanggang atau dibakar di atas api
+                            arang atau gril.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card" data-aos="flip-left">
+                    <img src="{% static 'images/Yakiniku.jpg' %}" class="card-img-top" alt="Project1">
+                    <div class="card-body">
+                        <p class="card-text">Yakiniku adalah gaya memasak Jepang yang secara harfiah berarti "daging
+                            panggang" atau "daging yang dipanggang". Ini adalah gaya memasak di mana irisan tipis daging
+                            sapi, daging babi, atau jenis daging lainnya dipanggang atau dipanggang dengan cepat di atas
+                            panggangan atau pemanggang yang panas.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card" data-aos="flip-left">
+                    <img src="{% static 'images/Wiener-Schnitzel.jpg' %}" class="card-img-top" alt="Project1">
+                    <div class="card-body">
+                        <p class="card-text">Wiener Schnitzel adalah hidangan Austria yang terdiri dari daging ayam atau
+                            daging sapi yang digoreng tepung. Hidangan ini memiliki kandungan lemak dan kalori yang
+                            tinggi karena proses penggorengannya.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card" data-aos="flip-left">
+                    <img src="{% static 'images/Pizza.jpg' %}" class="card-img-top" alt="Project1">
+                    <div class="card-body">
+                        <p class="card-text">Pizza adalah hidangan makanan yang terkenal dan populer di seluruh dunia.
+                            Itu berasal dari Italia dan terdiri dari adonan yang dipanggang dengan berbagai topping.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card" data-aos="flip-left">
+                    <img src="{% static 'images/Peking Duck.jpg' %}" class="card-img-top" alt="Project1">
+                    <div class="card-body">
+                        <p class="card-text">Peking duck adalah hidangan bebek panggang yang terkenal di China. Bebek
+                            dipanggang dengan kulit yang renyah dan daging yang lembut. Untuk menyantapnya, biasanya
+                            disajikan bersama dengan pancake tipis, saus hoisin, dan irisan daun bawang serta mentimun.
+                            Peking duck mengandung banyak lemak dan kalori karena daging bebek yang tinggi lemak.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card" data-aos="flip-left">
+                    <img src="{% static 'images/Hot dog.jpg' %}" class="card-img-top" alt="Project1">
+                    <div class="card-body">
+                        <p class="card-text">Hot Dog adalah hidangan yang terdiri dari sosis yang dimasak dan diletakkan
+                            di dalam roti panjang yang disebut hot dog bun. Hot dog sering kali disajikan dengan
+                            berbagai tambahan seperti saus, mustard, mayones, bawang goreng, acar, dan relish.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card" data-aos="flip-left">
+                    <img src="{% static 'images/Dim sum.jpg' %}" class="card-img-top" alt="Project1">
+                    <div class="card-body">
+                        <p class="card-text">Dim sum adalah sejenis hidangan kecil yang berasal dari masakan khas China.
+                            Makanan ini biasanya disajikan dalam piring kecil atau keranjang bambu dan dikonsumsi secara
+                            bersama-sama dalam hidangan berbagi. Dim sum biasanya disajikan saat makan pagi atau brunch
+                            di restoran khusus dim sum.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card" data-aos="flip-left">
+                    <img src="{% static 'images/bulgogi.jpg' %}" class="card-img-top" alt="Project1">
+                    <div class="card-body">
+                        <p class="card-text">Bulgogi adalah hidangan daging panggang khas Korea yang terkenal di seluruh
+                            dunia. Kata "bulgogi" secara harfiah berarti "daging api", yang mengacu pada cara memasaknya
+                            di atas api terbuka atau panggangan.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card" data-aos="flip-left">
+                    <img src="{% static 'images/burger.jpg' %}" class="card-img-top" alt="Project1">
+                    <div class="card-body">
+                        <p class="card-text">Burger adalah hidangan makanan yang terdiri dari sejenis roti bundar yang
+                            dipotong dua, di antaranya terdapat patty daging yang digoreng atau dipanggang. Burger
+                            sering disajikan dengan berbagai tambahan seperti keju, selada, tomat,
+                            bawang, saus, dan acar.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#272727" fill-opacity="1"
+                d="M0,64L34.3,74.7C68.6,85,137,107,206,133.3C274.3,160,343,192,411,208C480,224,549,224,617,234.7C685.7,245,754,267,823,256C891.4,245,960,203,1029,186.7C1097.1,171,1166,181,1234,160C1302.9,139,1371,85,1406,58.7L1440,32L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z">
+            </path>
+        </svg>
+    </section>
+    <!-- High Kalori End -->
+
+    <!-- Low Kalori -->
+    <section id="about-1">
+        <div class="container" data-aos="fade-down" data-aos-offset="250" data-aos-delay="200">
+            <div class="row text-center mb-3">
+                <div class="col-text">
+                    <h2>Kalori Rendah</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-4 mb-3">
+                <div class="card" data-aos="flip-left">
+                    <img src="{% static 'images/supmiso.jpeg' %}" class="card-img-top" alt="Project1">
+                    <div class="card-body">
+                        <p class="card-text">Sup Miso adalah Sup tradisional Jepang yang terbuat dari pasta kedelai
+                            fermentasi, tahu, rumput laut, dan sayuran. Sup ini rendah kalori namun kaya rasa.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card" data-aos="flip-left">
+                    <img src="{% static 'images/salad.jpg' %}" class="card-img-top" alt="Project1">
+                    <div class="card-body">
+                        <p class="card-text">Salad adalah hidangan yang terdiri dari campuran sayuran segar seperti daun
+                            salad, mentimun, tomat, dan bahan tambahan seperti keju, biji-bijian, atau daging. Biasanya,
+                            salad disajikan dengan dressing atau saus untuk menambah rasa dan kelembapan. Salad dapat
+                            menjadi hidangan yang sehat dan rendah kalori tergantung pada bahan dan
+                            dressing yang digunakan.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card" data-aos="flip-left">
+                    <img src="{% static 'images/buah.jpg' %}" class="card-img-top" alt="Project1">
+                    <div class="card-body">
+                        <p class="card-text">Buah adalah bagian yang matang dari tumbuhan yang mengandung biji. Buah
+                            biasanya memiliki rasa manis atau asam dan seringkali dikonsumsi sebagai makanan yang segar
+                            dan menyegarkan. Buah-buahan kaya akan serat, vitamin, mineral, dan antioksidan yang penting
+                            bagi kesehatan tubuh.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card" data-aos="flip-left">
+                    <img src="{% static 'images/tofu.jpg' %}" class="card-img-top" alt="Project1">
+                    <div class="card-body">
+                        <p class="card-text">Tofu adalah makanan yang berasal dari kedelai yang difermentasi. Tofu juga
+                            dikenal sebagai tahu atau bean curd. Proses pembuatannya melibatkan menggumpalkan susu
+                            kedelai, kemudian mengendapkannya dan menghasilkan blok padat yang lembut dan putih.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card" data-aos="flip-left">
+                    <img src="{% static 'images/yogurt.jpg' %}" class="card-img-top" alt="Project1">
+                    <div class="card-body">
+                        <p class="card-text">Yogurt adalah produk susu hasil fermentasi yang memiliki tekstur krimi dan
+                            rasa asam yang khas. Ini dibuat dengan mengolah susu dengan menambahkan bakteri asam laktat
+                            tertentu, yang mengubah laktosa dalam susu menjadi asam laktat. Proses fermentasi ini
+                            memberikan yogurt dengan rasa dan tekstur yang unik.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card" data-aos="flip-left">
+                    <img src="{% static 'images/tempe.jpg' %}" class="card-img-top" alt="Project1">
+                    <div class="card-body">
+                        <p class="card-text">Tempeh adalah makanan tradisional Indonesia yang terbuat dari kedelai yang
+                            difermentasi. Proses pembuatan tempeh melibatkan perendaman dan fermentasi kedelai yang
+                            telah digiling dengan menggunakan kultur jamur Rhizopus. Hasilnya adalah sejenis kue padat
+                            yang memiliki tekstur yang kenyal dan memiliki aroma dan rasa yang khas.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card" data-aos="flip-left">
+                    <img src="{% static 'images/supsayuran.png' %}" class="card-img-top" alt="Project1">
+                    <div class="card-body">
+                        <p class="card-text">Sup sayuran adalah hidangan yang terbuat dari berbagai macam sayuran yang
+                            direbus bersama dengan kaldu atau air. Ini adalah hidangan yang sangat serbaguna, karena
+                            Anda dapat menggunakan berbagai jenis sayuran sesuai dengan preferensi Anda. Sup sayuran
+                            biasanya rendah kalori dan tinggi serat, serta kaya akan nutrisi dari berbagai sayuran yang
+                            digunakan.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card" data-aos="flip-left">
+                    <img src="{% static 'images/sushi.jpg' %}" class="card-img-top" alt="Project1">
+                    <div class="card-body">
+                        <p class="card-text">Sushi adalah hidangan Jepang yang terdiri dari nasi yang dibentuk menjadi
+                            gumpalan kecil, kemudian di atasnya ditempatkan irisan ikan mentah, makanan laut, atau bahan
+                            lain seperti sayuran atau telur. Sushi sering disajikan dengan wasabi (pasta daun wasabi),
+                            jahe, dan saus kedelai. </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card" data-aos="flip-left">
+                    <img src="{% static 'images/rattatouile.png' %}" class="card-img-top" alt="Project1">
+                    <div class="card-body">
+                        <p class="card-text">Ratatouille adalah Sup sayuran Prancis yang terbuat dari terong, zukini,
+                            paprika, tomat, dan rempah-rempah. Ratatouille adalah hidangan yang kaya rasa dan rendah
+                            kalori yang dapat dinikmati sebagai hidangan utama atau hidangan sampingan.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#f3f4f5" fill-opacity="1"
+                d="M0,32L48,42.7C96,53,192,75,288,122.7C384,171,480,245,576,250.7C672,256,768,192,864,149.3C960,107,1056,85,1152,64C1248,43,1344,21,1392,10.7L1440,0L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+            </path>
+        </svg>
+    </section>
+    <!-- High Kalori End -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+</body>
+
+</html>
